@@ -70,13 +70,12 @@
       ]
     },
     {
-      "group": "API Documentation",
       "pages": [
         "api-reference/introduction"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Numbers",
       "pages": [
         "api-reference/endpoint/get",
         "api-reference/endpoint/create"
