@@ -39,10 +39,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "OK"
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request"
                     }
                 }
             }
