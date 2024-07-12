@@ -57,7 +57,36 @@
       "pages": [
         "api-reference/introduction"
       ]
-    }
+    },
+  {
+    "group": "customer",
+    "pages": [
+      "customer/get-customer"
+    ]
+  },
+  {
+    "group": "channel",
+    "pages": [
+      "channel/get-customer-channeltariff"
+    ]
+  },
+  {
+    "group": "number_group",
+    "pages": [
+      "number_group/get-customer-number_group",
+      "number_group/get-customer-number_group-1",
+      "number_group/get-customer-number_group-order",
+      "number_group/post-customer-number_group-order",
+      "number_group/get-customer-number_group-order-1",
+      "number_group/get-customer-number_group-order-numbers"
+    ]
+  },
+  {
+    "group": "number_order",
+    "pages": [
+      "number_order/get-customer-number_order"
+    ]
+  }
   ],
   "footerSocials": {
     "linkedin": "https://www.linkedin.com/company/wavecrest/"
