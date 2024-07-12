@@ -3,8 +3,8 @@
   "openapi": "/customer-openapi.json",
   "name": "Starter Kit",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/wavecrest-logo-dark.svg",
+    "light": "/logo/wavecrest-logo-light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
