@@ -25,6 +25,13 @@
     "name": "Main Site",
     "url": "https://wavecrest.com"
   },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference",
+      "openapi": "https://api.jsonserve.com/dhACAV"
+    }
+  ],
   "navigation": [
     {
       "group": "Get Started",
