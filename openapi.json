@@ -1,0 +1,914 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Voicenet Provisioning API",
+    "description": "Documentation of Provisioning API",
+    "contact": {
+
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "paths": {
+    "/customer": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "description": "gets all customers for a partner",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/routes.Customer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ]
+      }
+    },
+    "/customer/{customer_uuid}/channel/tariff": {
+      "get": {
+        "tags": [
+          "channel"
+        ],
+        "description": "gets customer customer channel tariff",
+        "parameters": [
+          {
+            "name": "customer_uuid",
+            "in": "path",
+            "description": "Customer UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.CustomerChannelTariff"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ]
+      }
+    },
+    "/customer/{customer_uuid}/number_group": {
+      "get": {
+        "tags": [
+          "number_group"
+        ],
+        "description": "gets all number groups that match the given criteria",
+        "parameters": [
+          {
+            "name": "customer_uuid",
+            "in": "path",
+            "description": "Customer UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country_iso_a3",
+            "in": "query",
+            "description": "Country ISO A3 code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "area_code",
+            "in": "query",
+            "description": "Area code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city_name",
+            "in": "query",
+            "description": "City name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state_name",
+            "in": "query",
+            "description": "State name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "number_type",
+            "in": "query",
+            "description": "Number type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "feature",
+            "in": "query",
+            "description": "Feature",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.PaginatedNumberGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ]
+      }
+    },
+    "/customer/{customer_uuid}/number_group/{number_group_uuid}": {
+      "get": {
+        "tags": [
+          "number_group"
+        ],
+        "description": "gets number group record",
+        "parameters": [
+          {
+            "name": "customer_uuid",
+            "in": "path",
+            "description": "Customer UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "number_group_uuid",
+            "in": "path",
+            "description": "UUID of the number group to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.NumberGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ]
+      }
+    },
+    "/customer/{customer_uuid}/number_group/{number_group_uuid}/order": {
+      "get": {
+        "tags": [
+          "number_group",
+          "number_order"
+        ],
+        "description": "gets all number orders that match the given criteria",
+        "parameters": [
+          {
+            "name": "customer_uuid",
+            "in": "path",
+            "description": "UUID of the customer to get number orders for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "number_group_uuid",
+            "in": "path",
+            "description": "UUID of the number group to get number orders for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.PaginatedCustomerNumberOrder"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "number_group",
+          "number_order"
+        ],
+        "description": "creates a number order",
+        "parameters": [
+          {
+            "name": "customer_uuid",
+            "in": "path",
+            "description": "UUID of the customer to create a number order for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "number_group_uuid",
+            "in": "path",
+            "description": "UUID of the number group to create a number order for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Customer number order to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/routes.AddCustomerNumberOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPEventId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ],
+        "x-codegen-request-body-name": "number_order"
+      }
+    },
+    "/customer/{customer_uuid}/number_group/{number_group_uuid}/order/{customer_number_order_uuid}": {
+      "get": {
+        "tags": [
+          "number_group",
+          "number_order"
+        ],
+        "description": "gets a number order",
+        "parameters": [
+          {
+            "name": "customer_uuid",
+            "in": "path",
+            "description": "UUID of the customer to get number orders for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "number_group_uuid",
+            "in": "path",
+            "description": "UUID of the number group to get number orders for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customer_number_order_uuid",
+            "in": "path",
+            "description": "UUID of the customer order to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.CustomerNumberOrder"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ]
+      }
+    },
+    "/customer/{customer_uuid}/number_group/{number_group_uuid}/order/{customer_number_order_uuid}/numbers": {
+      "get": {
+        "tags": [
+          "number_group",
+          "number_order"
+        ],
+        "description": "gets the numbers associated with the number order",
+        "parameters": [
+          {
+            "name": "customer_uuid",
+            "in": "path",
+            "description": "UUID of the customer to get number orders for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "number_group_uuid",
+            "in": "path",
+            "description": "UUID of the number group to get number orders for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customer_number_order_uuid",
+            "in": "path",
+            "description": "UUID of the customer order to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.PaginatedCustomerNumberOrderNumber"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ]
+      }
+    },
+    "/customer/{customer_uuid}/number_order": {
+      "get": {
+        "tags": [
+          "number_order"
+        ],
+        "description": "gets all number orders for the customer",
+        "parameters": [
+          {
+            "name": "customer_uuid",
+            "in": "path",
+            "description": "UUID of the customer to get number orders for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.PaginatedCustomerNumberOrder"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/routes.HTTPError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "ApiSecretAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "routes.AddCustomerNumberOrder": {
+        "type": "object",
+        "properties": {
+          "customer_ref": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "routes.Customer": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/routes.CustomerCurrency"
+              }
+            ]
+          },
+          "customer_tariff_plan_name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
+      "routes.CustomerChannelTariff": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "integer"
+          },
+          "channel_burst": {
+            "type": "integer"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/routes.CustomerCurrency"
+          }
+        }
+      },
+      "routes.CustomerCurrency": {
+        "type": "string",
+        "enum": [
+          "EUR",
+          "USD",
+          "GBP"
+        ],
+        "x-enum-varnames": [
+          "CUSTOMER_CURRENCY_EUR",
+          "CUSTOMER_CURRENCY_USD",
+          "CUSTOMER_CURRENCY_GBP"
+        ]
+      },
+      "routes.CustomerNumberOrder": {
+        "type": "object",
+        "properties": {
+          "customer_ref": {
+            "type": "string"
+          },
+          "number_group": {
+            "$ref": "#/components/schemas/routes.NumberGroup"
+          },
+          "order_date": {
+            "type": "string"
+          },
+          "order_status": {
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "PENDING",
+              "IN_PROGRESS",
+              "COMPLETED",
+              "FAILED"
+            ]
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "tariff": {
+            "$ref": "#/components/schemas/routes.CustomerNumberTariffRotation"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
+      "routes.CustomerNumberTariffRotation": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/routes.CustomerCurrency"
+              }
+            ]
+          },
+          "from_date": {
+            "type": "string"
+          },
+          "monthly_cost": {
+            "type": "integer"
+          },
+          "setup_cost": {
+            "type": "integer"
+          }
+        }
+      },
+      "routes.HTTPError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "routes.HTTPEventId": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
+      "routes.NumberGroup": {
+        "type": "object",
+        "properties": {
+          "area_code": {
+            "type": "string"
+          },
+          "city_name": {
+            "type": "string"
+          },
+          "country_iso_a3": {
+            "type": "string"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "monthly_cost": {
+            "type": "integer",
+            "description": "Monthly cost in 10th of cents"
+          },
+          "num_available": {
+            "type": "integer"
+          },
+          "number_type": {
+            "type": "string"
+          },
+          "on_demand_allocation": {
+            "type": "boolean"
+          },
+          "provider_name": {
+            "type": "string"
+          },
+          "provider_uuid": {
+            "type": "string"
+          },
+          "setup_cost": {
+            "type": "integer",
+            "description": "Setup cost in 10th of cents"
+          },
+          "state_name": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        },
+        "description": "A group of numbers of the same type"
+      },
+      "routes.PaginatedCustomerNumberOrder": {
+        "type": "object",
+        "properties": {
+          "number_orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/routes.CustomerNumberOrder"
+            }
+          },
+          "page_number": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
+      "routes.PaginatedCustomerNumberOrderNumber": {
+        "type": "object",
+        "properties": {
+          "numbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "page_number": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
+      "routes.PaginatedNumberGroup": {
+        "type": "object",
+        "properties": {
+          "number_groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/routes.NumberGroup"
+            }
+          },
+          "page_number": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "X-Voicenet-API-KEY",
+        "in": "header"
+      },
+      "ApiSecretAuth": {
+        "type": "apiKey",
+        "name": "X-Voicenet-API-SECRET",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}
