@@ -1,6 +1,5 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "openapi": "/customer-openapi.json",
   "name": "Starter Kit",
   "logo": {
     "dark": "/logo/wavecrest-logo-dark.svg",
@@ -29,7 +28,8 @@
   "tabs": [
     {
       "name": "API Reference",
-      "url": "api-reference"
+      "url": "api-reference",
+      "openapi": "api-reference/openapi.json"
     }
   ],
   "navigation": [
