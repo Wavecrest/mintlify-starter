@@ -56,13 +56,6 @@
       "pages": [
         "api-reference/introduction"
       ]
-    },
-    {
-      "group": "Numbers",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create"
-      ]
     }
   ],
   "footerSocials": {
