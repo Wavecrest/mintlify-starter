@@ -1,0 +1,858 @@
+{
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Documentation of Provisioning API",
+        "title": "Voicenet Provisioning API",
+        "contact": {},
+        "version": "1.0.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/customer": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "gets all customers for a partner",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "customer"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/routes.Customer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customer_uuid}/channel/tariff": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "gets customer customer channel tariff",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "channel"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer UUID",
+                        "name": "customer_uuid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.CustomerChannelTariff"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customer_uuid}/number_group": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "gets all number groups that match the given criteria",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "number_group"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer UUID",
+                        "name": "customer_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Country ISO A3 code",
+                        "name": "country_iso_a3",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Area code",
+                        "name": "area_code",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "City name",
+                        "name": "city_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "State name",
+                        "name": "state_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Number type",
+                        "name": "number_type",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "example": "\"SMS,T38\"",
+                        "description": "Feature",
+                        "name": "feature",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page_number",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page size",
+                        "name": "page_size",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.PaginatedNumberGroup"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customer_uuid}/number_group/{number_group_uuid}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "gets number group record",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "number_group"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer UUID",
+                        "name": "customer_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID of the number group to get",
+                        "name": "number_group_uuid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.NumberGroup"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customer_uuid}/number_group/{number_group_uuid}/order": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "gets all number orders that match the given criteria",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "number_group",
+                    "number_order"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID of the customer to get number orders for",
+                        "name": "customer_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID of the number group to get number orders for",
+                        "name": "number_group_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page_number",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page size",
+                        "name": "page_size",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.PaginatedCustomerNumberOrder"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "creates a number order",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "number_group",
+                    "number_order"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID of the customer to create a number order for",
+                        "name": "customer_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID of the number group to create a number order for",
+                        "name": "number_group_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Customer number order to create",
+                        "name": "number_order",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.AddCustomerNumberOrder"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPEventId"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customer_uuid}/number_group/{number_group_uuid}/order/{customer_number_order_uuid}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "gets a number order",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "number_group",
+                    "number_order"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID of the customer to get number orders for",
+                        "name": "customer_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID of the number group to get number orders for",
+                        "name": "number_group_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID of the customer order to get",
+                        "name": "customer_number_order_uuid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.CustomerNumberOrder"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customer_uuid}/number_group/{number_group_uuid}/order/{customer_number_order_uuid}/numbers": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "gets the numbers associated with the number order",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "number_group",
+                    "number_order"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID of the customer to get number orders for",
+                        "name": "customer_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID of the number group to get number orders for",
+                        "name": "number_group_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID of the customer order to get",
+                        "name": "customer_number_order_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page_number",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page size",
+                        "name": "page_size",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.PaginatedCustomerNumberOrderNumber"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/{customer_uuid}/number_order": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiSecretAuth": []
+                    }
+                ],
+                "description": "gets all number orders for the customer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "number_order"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID of the customer to get number orders for",
+                        "name": "customer_uuid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page_number",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page size",
+                        "name": "page_size",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.PaginatedCustomerNumberOrder"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "routes.AddCustomerNumberOrder": {
+            "type": "object",
+            "properties": {
+                "customer_ref": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.Customer": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "enum": [
+                        "EUR",
+                        "USD",
+                        "GBP"
+                    ],
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/routes.CustomerCurrency"
+                        }
+                    ]
+                },
+                "customer_tariff_plan_name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.CustomerChannelTariff": {
+            "type": "object",
+            "properties": {
+                "channel": {
+                    "type": "integer"
+                },
+                "channel_burst": {
+                    "type": "integer"
+                },
+                "currency": {
+                    "$ref": "#/definitions/routes.CustomerCurrency"
+                }
+            }
+        },
+        "routes.CustomerCurrency": {
+            "type": "string",
+            "enum": [
+                "EUR",
+                "USD",
+                "GBP"
+            ],
+            "x-enum-varnames": [
+                "CUSTOMER_CURRENCY_EUR",
+                "CUSTOMER_CURRENCY_USD",
+                "CUSTOMER_CURRENCY_GBP"
+            ]
+        },
+        "routes.CustomerNumberOrder": {
+            "type": "object",
+            "properties": {
+                "customer_ref": {
+                    "type": "string"
+                },
+                "number_group": {
+                    "$ref": "#/definitions/routes.NumberGroup"
+                },
+                "order_date": {
+                    "type": "string"
+                },
+                "order_status": {
+                    "type": "string",
+                    "enum": [
+                        "CREATED",
+                        "PENDING",
+                        "IN_PROGRESS",
+                        "COMPLETED",
+                        "FAILED"
+                    ],
+                    "example": "PENDING"
+                },
+                "quantity": {
+                    "type": "integer"
+                },
+                "tariff": {
+                    "$ref": "#/definitions/routes.CustomerNumberTariffRotation"
+                },
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.CustomerNumberTariffRotation": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "enum": [
+                        "EUR",
+                        "USD",
+                        "GBP"
+                    ],
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/routes.CustomerCurrency"
+                        }
+                    ]
+                },
+                "from_date": {
+                    "type": "string"
+                },
+                "monthly_cost": {
+                    "type": "integer"
+                },
+                "setup_cost": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.HTTPError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 400
+                },
+                "message": {
+                    "type": "string",
+                    "example": "status bad request"
+                }
+            }
+        },
+        "routes.HTTPEventId": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.NumberGroup": {
+            "description": "A group of numbers of the same type",
+            "type": "object",
+            "properties": {
+                "area_code": {
+                    "type": "string",
+                    "example": "161"
+                },
+                "city_name": {
+                    "type": "string",
+                    "example": "MANCHESTER"
+                },
+                "country_iso_a3": {
+                    "type": "string",
+                    "example": "GBR"
+                },
+                "features": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "SMS",
+                        "T38"
+                    ]
+                },
+                "monthly_cost": {
+                    "description": "Monthly cost in 10th of cents",
+                    "type": "integer",
+                    "example": 2000
+                },
+                "num_available": {
+                    "type": "integer",
+                    "example": 100
+                },
+                "number_type": {
+                    "type": "string",
+                    "example": "GEOGRAPHIC"
+                },
+                "on_demand_allocation": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "provider_name": {
+                    "type": "string"
+                },
+                "provider_uuid": {
+                    "type": "string"
+                },
+                "setup_cost": {
+                    "description": "Setup cost in 10th of cents",
+                    "type": "integer",
+                    "example": 1000
+                },
+                "state_name": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.PaginatedCustomerNumberOrder": {
+            "type": "object",
+            "properties": {
+                "number_orders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.CustomerNumberOrder"
+                    }
+                },
+                "page_number": {
+                    "type": "integer"
+                },
+                "page_size": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.PaginatedCustomerNumberOrderNumber": {
+            "type": "object",
+            "properties": {
+                "numbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "page_number": {
+                    "type": "integer"
+                },
+                "page_size": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.PaginatedNumberGroup": {
+            "type": "object",
+            "properties": {
+                "number_groups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.NumberGroup"
+                    }
+                },
+                "page_number": {
+                    "type": "integer"
+                },
+                "page_size": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "X-Voicenet-API-KEY",
+            "in": "header"
+        },
+        "ApiSecretAuth": {
+            "type": "apiKey",
+            "name": "X-Voicenet-API-SECRET",
+            "in": "header"
+        }
+    }
+}
