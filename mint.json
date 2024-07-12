@@ -28,8 +28,7 @@
   "tabs": [
     {
       "name": "API Reference",
-      "url": "api-reference",
-      "openapi": "https://api.jsonserve.com/ap416X"
+      "url": "api-reference"
     }
   ],
   "navigation": [
