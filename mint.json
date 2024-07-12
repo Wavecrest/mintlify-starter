@@ -53,13 +53,13 @@
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "API Docs",
       "pages": [
         "api-reference/introduction"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Examples",
       "pages": [
         "api-reference/endpoint/get",
         "api-reference/endpoint/create",
